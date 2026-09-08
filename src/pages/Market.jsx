@@ -1,79 +1,244 @@
 
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./Market.css";
+
+// ============================================================
+// CROP MASTER DATA
+// ============================================================
+
+const CROPS = [
+  ["Rice", 3200],
+  ["Paddy", 3000],
+  ["Wheat", 2800],
+  ["Maize", 2200],
+  ["Ragi", 3600],
+  ["Jowar", 3000],
+  ["Bajra", 2600],
+  ["Groundnut", 5800],
+  ["Arecanut", 28000],
+  ["Coconut", 2600],
+  ["Turmeric", 8500],
+  ["Chilli", 12000],
+  ["Black Pepper", 52000],
+  ["Cardamom", 145000],
+  ["Ginger", 6200],
+  ["Garlic", 9000],
+  ["Onion", 2800],
+  ["Potato", 2200],
+  ["Tomato", 2600],
+  ["Cabbage", 1800],
+  ["Carrot", 3200],
+  ["Beans", 4800],
+  ["Brinjal", 2500],
+  ["Lady Finger", 3000],
+  ["Green Chilli", 5200],
+  ["Cucumber", 2200],
+  ["Pumpkin", 1800],
+  ["Bitter Gourd", 3500],
+  ["Bottle Gourd", 2200],
+  ["Drumstick", 5200],
+  ["Banana", 3000],
+  ["Mango", 6500],
+  ["Papaya", 2800],
+  ["Pineapple", 4200],
+  ["Guava", 3800],
+  ["Watermelon", 2400],
+  ["Pomegranate", 8500],
+  ["Soybean", 4200],
+  ["Sunflower", 5200],
+  ["Cotton", 7000],
+];
+
+// ============================================================
+// KARNATAKA APMC MARKETS
+// ============================================================
+
+const MARKETS = [
+  ["Udupi", "Udupi APMC"],
+  ["Udupi", "Kundapura APMC"],
+  ["Udupi", "Karkala APMC"],
+
+  ["Dakshina Kannada", "Mangalore APMC"],
+  ["Dakshina Kannada", "Puttur APMC"],
+  ["Dakshina Kannada", "Bantwal APMC"],
+
+  ["Uttara Kannada", "Karwar APMC"],
+  ["Uttara Kannada", "Sirsi APMC"],
+  ["Uttara Kannada", "Kumta APMC"],
+
+  ["Shivamogga", "Shivamogga APMC"],
+  ["Shivamogga", "Sagar APMC"],
+
+  ["Mysuru", "Mysuru APMC"],
+  ["Mysuru", "Nanjangud APMC"],
+
+  ["Hassan", "Hassan APMC"],
+  ["Hassan", "Arasikere APMC"],
+
+  ["Kodagu", "Madikeri APMC"],
+
+  ["Belagavi", "Belagavi APMC"],
+  ["Dharwad", "Dharwad APMC"],
+  ["Hubballi", "Hubballi APMC"],
+
+  ["Raichur", "Raichur APMC"],
+  ["Vijayapura", "Vijayapura APMC"],
+  ["Bagalkot", "Bagalkot APMC"],
+
+  ["Tumakuru", "Tumakuru APMC"],
+  ["Kolar", "Kolar APMC"],
+  ["Chikkaballapur", "Chikkaballapur APMC"],
+];
+
+// ============================================================
+// GET TODAY'S DATE
+// ============================================================
+
+function getTodayDate() {
+  const today = new Date();
+
+  return today.toLocaleDateString("en-GB");
+}
+
+// ============================================================
+// CREATE A DAILY NUMBER SEED
+// This changes automatically every day.
+// ============================================================
+
+function getDailySeed() {
+  const today = new Date();
+
+  return (
+    today.getFullYear() * 10000 +
+    (today.getMonth() + 1) * 100 +
+    today.getDate()
+  );
+}
+
+// ============================================================
+// CREATE 1500 FALLBACK MARKET RECORDS
+// Prices automatically change every day.
+// ============================================================
+
+function createFallbackPrices() {
+  const date = getTodayDate();
+  const dailySeed = getDailySeed();
+
+  const prices = [];
+
+  for (let i = 0; i < 1500; i += 1) {
+    // Select crop
+    const cropIndex =
+      (i * 17 + dailySeed) % CROPS.length;
+
+    // Select market
+    const marketIndex =
+      (i * 11 + dailySeed) % MARKETS.length;
+
+    const [crop, basePrice] =
+      CROPS[cropIndex];
+
+    const [district, market] =
+      MARKETS[marketIndex];
+
+    // Daily price variation
+    const variation =
+      ((dailySeed * 13 + i * 73) % 501) -
+      250;
+
+    const price = Math.max(
+      100,
+      basePrice + variation
+    );
+
+    prices.push({
+      id: i + 1,
+
+      crop,
+      commodity: crop,
+      commodity_name: crop,
+
+      market,
+      market_name: market,
+
+      district,
+      district_name: district,
+
+      state: "Karnataka",
+      state_name: "Karnataka",
+
+      price,
+      modal_price: price,
+      modalPrice: price,
+
+      min_price: Math.round(
+        price * 0.92
+      ),
+
+      max_price: Math.round(
+        price * 1.08
+      ),
+
+      arrival_date: date,
+      arrivalDate: date,
+      date,
+    });
+  }
+
+  return prices;
+}
+
+// ============================================================
+// MARKET COMPONENT
+// ============================================================
 
 function Market({ goHome }) {
   const [prices, setPrices] = useState([]);
-  const [filteredPrices, setFilteredPrices] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [lastUpdated, setLastUpdated] = useState("");
-  const [search, setSearch] = useState("");
+  const [filteredPrices, setFilteredPrices] =
+    useState([]);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState("");
+
+  const [lastUpdated, setLastUpdated] =
+    useState("");
+
+  const [search, setSearch] =
+    useState("");
 
   // ============================================================
   // LOAD MARKET PRICES
   // ============================================================
 
-  const loadMarketPrices = async () => {
+  const loadMarketPrices = () => {
     setLoading(true);
     setError("");
 
     try {
-      const response = await axios.get(
-        "http://127.0.0.1:5000/market-prices",
-        {
-          timeout: 30000,
-        }
-      );
+      const fallbackPrices =
+        createFallbackPrices();
 
-      console.log("Market API response:", response.data);
-
-      const data = response.data;
-
-      if (!data || !Array.isArray(data.prices)) {
-        throw new Error("No market data available.");
-      }
-
-      // IMPORTANT:
-      // Keep ALL records returned by backend.
-      // Do NOT remove duplicate crops.
-      //
-      // Example:
-      // Rice - Udupi APMC
-      // Rice - Mangalore APMC
-      // Rice - Raichur APMC
-      //
-      // All records will be displayed.
-
-      const allPrices = data.prices;
-
-      setPrices(allPrices);
-      setFilteredPrices(allPrices);
+      setPrices(fallbackPrices);
+      setFilteredPrices(fallbackPrices);
 
       setLastUpdated(
-        data.last_checked || new Date().toISOString()
+        new Date().toISOString()
       );
     } catch (err) {
-      console.error("Market price error:", err);
+      console.error(
+        "Market price error:",
+        err
+      );
 
       setPrices([]);
       setFilteredPrices([]);
 
-      if (err.code === "ECONNABORTED") {
-        setError("Server took too long to respond.");
-      } else if (err.response) {
-        setError(
-          err.response.data?.message ||
-            `Server error: ${err.response.status}`
-        );
-      } else if (err.message) {
-        setError(err.message);
-      } else {
-        setError(
-          "Network Error. Make sure Flask is running."
-        );
-      }
+      setError(
+        "Unable to create fallback market prices."
+      );
     } finally {
       setLoading(false);
     }
@@ -92,54 +257,56 @@ function Market({ goHome }) {
   // ============================================================
 
   const handleSearch = () => {
-    const searchText = search.trim().toLowerCase();
+    const searchText =
+      search.trim().toLowerCase();
 
     if (searchText === "") {
       setFilteredPrices(prices);
       return;
     }
 
-    const results = prices.filter((item) => {
-      const crop = String(
-        item.crop ||
-          item.commodity ||
-          item.commodity_name ||
-          ""
-      ).toLowerCase();
+    const results =
+      prices.filter((item) => {
+        const crop = String(
+          item.crop ||
+            item.commodity ||
+            item.commodity_name ||
+            ""
+        ).toLowerCase();
 
-      const market = String(
-        item.market ||
-          item.market_name ||
-          ""
-      ).toLowerCase();
+        const market = String(
+          item.market ||
+            item.market_name ||
+            ""
+        ).toLowerCase();
 
-      const district = String(
-        item.district ||
-          item.district_name ||
-          ""
-      ).toLowerCase();
+        const district = String(
+          item.district ||
+            item.district_name ||
+            ""
+        ).toLowerCase();
 
-      const state = String(
-        item.state ||
-          item.state_name ||
-          ""
-      ).toLowerCase();
+        const state = String(
+          item.state ||
+            item.state_name ||
+            ""
+        ).toLowerCase();
 
-      const date = String(
-        item.date ||
-          item.arrival_date ||
-          item.arrivalDate ||
-          ""
-      ).toLowerCase();
+        const date = String(
+          item.date ||
+            item.arrival_date ||
+            item.arrivalDate ||
+            ""
+        ).toLowerCase();
 
-      return (
-        crop.includes(searchText) ||
-        market.includes(searchText) ||
-        district.includes(searchText) ||
-        state.includes(searchText) ||
-        date.includes(searchText)
-      );
-    });
+        return (
+          crop.includes(searchText) ||
+          market.includes(searchText) ||
+          district.includes(searchText) ||
+          state.includes(searchText) ||
+          date.includes(searchText)
+        );
+      });
 
     setFilteredPrices(results);
   };
@@ -182,7 +349,9 @@ function Market({ goHome }) {
       return "N/A";
     }
 
-    return `₹${number.toLocaleString("en-IN")}`;
+    return `₹${number.toLocaleString(
+      "en-IN"
+    )}`;
   };
 
   // ============================================================
@@ -199,10 +368,13 @@ function Market({ goHome }) {
       <div className="marketHeader">
 
         <div>
-          <h1>📈 Karnataka Market Prices</h1>
+          <h1>
+            📈 Karnataka Market Prices
+          </h1>
 
           <p>
-            Latest available agricultural market prices
+            Karnataka agricultural market
+            prices
           </p>
         </div>
 
@@ -359,7 +531,9 @@ function Market({ goHome }) {
 
                 <button
                   className="retryButton"
-                  onClick={handleClearSearch}
+                  onClick={
+                    handleClearSearch
+                  }
                 >
                   ✕ Clear Search
                 </button>
@@ -415,7 +589,9 @@ function Market({ goHome }) {
                         className="marketCard"
                         key={
                           item.id ??
-                          `${String(crop)}-${index}`
+                          `${String(
+                            crop
+                          )}-${index}`
                         }
                       >
 
@@ -507,8 +683,9 @@ function Market({ goHome }) {
 
         <p>
           The prices displayed in this section
-          are intended to provide farmers with
-          agricultural market information.
+          provide agricultural market
+          information for application
+          demonstration purposes.
         </p>
 
         <p>
@@ -521,15 +698,15 @@ function Market({ goHome }) {
 
         <p>
           <strong>
-            Source: Government agricultural
-            market data / AGMARKNET
+            Source: Offline fallback
+            agricultural market information
           </strong>
         </p>
 
         <p>
-          🔄 Prices are requested from the
-          government market service whenever
-          you refresh this page.
+          🔄 Market prices are generated
+          automatically each day. No manual
+          update is required.
         </p>
 
         <div className="dataNotice">
@@ -539,16 +716,15 @@ function Market({ goHome }) {
           </h3>
 
           <p>
-            When the government market service
-            is temporarily unavailable,
-            fallback market information may
-            be displayed.
+            Fallback market prices are
+            generated locally for the
+            application.
           </p>
 
           <p>
             <strong>
-              Fallback prices are NOT live
-              government prices.
+              These are NOT live government
+              market prices.
             </strong>
           </p>
 
@@ -580,4 +756,3 @@ function Market({ goHome }) {
 }
 
 export default Market;
-
