@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "PM-KISAN Samman Nidhi",
+    "icon": "🌾",
+    "category": "Income Support",
+    "benefit": "Eligible farmers can receive financial support of ₹6000 per year.",
+    "eligibility": "Eligible landholding farmer families as per the scheme rules.",
+    "documents": [
+      "Aadhaar Card",
+      "Bank Account Details",
+      "Land Records"
+    ],
+    "applyText": "Apply through the official PM-KISAN portal"
+  },
+  {
+    "id": 2,
+    "name": "Soil Health Card Scheme",
+    "icon": "🌱",
+    "category": "Soil Testing",
+    "benefit": "Provides soil testing information and recommendations for suitable fertilizers.",
+    "eligibility": "Farmers who want to test their agricultural soil.",
+    "documents": [
+      "Aadhaar Card",
+      "Farmer Details",
+      "Land Details"
+    ],
+    "applyText": "Visit the official Soil Health Card portal"
+  },
+  {
+    "id": 3,
+    "name": "Pradhan Mantri Fasal Bima Yojana",
+    "icon": "🌧️",
+    "category": "Crop Insurance",
+    "benefit": "Provides insurance protection against eligible crop losses.",
+    "eligibility": "Eligible farmers growing notified crops in notified areas.",
+    "documents": [
+      "Aadhaar Card",
+      "Bank Account Details",
+      "Land/Crop Details"
+    ],
+    "applyText": "Apply through the official crop insurance portal"
+  },
+  {
+    "id": 4,
+    "name": "Kisan Credit Card",
+    "icon": "💳",
+    "category": "Agricultural Credit",
+    "benefit": "Provides farmers access to credit for agricultural and related activities.",
+    "eligibility": "Eligible farmers and agricultural borrowers as per bank rules.",
+    "documents": [
+      "Aadhaar Card",
+      "Bank Details",
+      "Land Documents"
+    ],
+    "applyText": "Contact an eligible bank or financial institution"
+  },
+  {
+    "id": 5,
+    "name": "PM Kisan Maandhan Yojana",
+    "icon": "👨‍🌾",
+    "category": "Farmer Pension",
+    "benefit": "Provides pension benefits to eligible small and marginal farmers after meeting scheme conditions.",
+    "eligibility": "Eligible small and marginal farmers according to scheme rules.",
+    "documents": [
+      "Aadhaar Card",
+      "Bank Account",
+      "Land Records"
+    ],
+    "applyText": "Apply through an authorised CSC or official channel"
+  }
+]

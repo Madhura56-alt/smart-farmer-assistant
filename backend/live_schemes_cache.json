@@ -1,0 +1,35 @@
+{
+  "success": true,
+  "live": true,
+  "automatic": true,
+  "fallback": false,
+  "last_checked": "2026-08-13T10:03:50.827142",
+  "last_updated": "2026-08-13T10:03:50.827142",
+  "count": 1,
+  "schemes": [
+    {
+      "id": "live-1",
+      "name": "my Scheme",
+      "category": "Government Scheme",
+      "type": "Government",
+      "description": "Scheme listed on the official myScheme platform.",
+      "benefit": "See the official scheme page for current benefits and assistance.",
+      "eligibility": [
+        "Check the official scheme page."
+      ],
+      "documents": [
+        "Check the official scheme page."
+      ],
+      "application_status": "Check official scheme page",
+      "deadline": "Check official scheme page",
+      "apply_url": "https://www.myscheme.gov.in/",
+      "details_url": "https://www.myscheme.gov.in/",
+      "official_url": "https://www.myscheme.gov.in/",
+      "source": "Government of India - myScheme",
+      "live": true,
+      "last_checked": "2026-08-13T10:03:50.827142"
+    }
+  ],
+  "source": "Government of India - myScheme",
+  "source_url": "https://rules.myscheme.gov.in/"
+}

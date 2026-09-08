@@ -1,0 +1,864 @@
+
+/* ============================================================
+   GOVERNMENT SCHEMES PAGE
+   Smart Farmer Assistant
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   MAIN PAGE
+   ============================================================ */
+
+.governmentPage {
+  min-height: 100vh;
+  width: 100%;
+  padding: 30px;
+  background: linear-gradient(
+    135deg,
+    #f1f8e9,
+    #ffffff,
+    #e8f5e9
+  );
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+  color: #263238;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.governmentHeader {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 25px;
+
+  background: #ffffff;
+  border-radius: 18px;
+
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.governmentHeader h1 {
+  margin: 0 0 8px;
+
+  font-size: 32px;
+  font-weight: 700;
+
+  color: #1b5e20;
+}
+
+.governmentHeader p {
+  margin: 0;
+
+  font-size: 16px;
+  color: #607d8b;
+}
+
+/* ============================================================
+   REFRESH BUTTON
+   ============================================================ */
+
+.refreshButton {
+  border: none;
+  outline: none;
+
+  padding: 12px 20px;
+
+  border-radius: 10px;
+
+  background: #2e7d32;
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.refreshButton:hover {
+  background: #1b5e20;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 5px 12px rgba(46, 125, 50, 0.25);
+}
+
+.refreshButton:active {
+  transform: scale(0.97);
+}
+
+/* ============================================================
+   INFORMATION BAR
+   ============================================================ */
+
+.backendInfo {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+
+  padding: 14px 18px;
+
+  background: #e8f5e9;
+
+  border-left: 5px solid #2e7d32;
+
+  border-radius: 10px;
+
+  color: #33691e;
+
+  font-size: 14px;
+}
+
+/* ============================================================
+   SUMMARY
+   ============================================================ */
+
+.schemeSummary {
+  max-width: 1200px;
+
+  margin: 0 auto 25px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+.summaryCard {
+  min-height: 140px;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.07);
+
+  border: 1px solid #e0e0e0;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.summaryCard:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 9px 24px rgba(0, 0, 0, 0.12);
+}
+
+.summaryCard span {
+  font-size: 30px;
+
+  margin-bottom: 8px;
+}
+
+.summaryCard strong {
+  font-size: 25px;
+
+  color: #1b5e20;
+
+  margin-bottom: 5px;
+}
+
+.summaryCard small {
+  font-size: 14px;
+
+  color: #607d8b;
+}
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+
+.schemeSearch {
+  max-width: 1200px;
+
+  margin: 0 auto 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  position: relative;
+}
+
+.schemeSearch input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 50px;
+
+  padding: 0 18px;
+
+  border: 2px solid #c8e6c9;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #263238;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.schemeSearch input::placeholder {
+  color: #90a4ae;
+}
+
+.schemeSearch input:focus {
+  border-color: #43a047;
+
+  box-shadow:
+    0 0 0 3px rgba(67, 160, 71, 0.12);
+}
+
+/* ============================================================
+   SEARCH BUTTON
+   ============================================================ */
+
+.searchButton {
+  height: 50px;
+
+  padding: 0 22px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #388e3c;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.searchButton:hover {
+  background: #1b5e20;
+
+  transform: translateY(-1px);
+}
+
+.searchButton:active {
+  transform: scale(0.97);
+}
+
+/* ============================================================
+   CLEAR SEARCH
+   ============================================================ */
+
+.clearSearch {
+  width: 35px;
+
+  height: 35px;
+
+  position: absolute;
+
+  right: 125px;
+
+  top: 7px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #eeeeee;
+
+  color: #455a64;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.clearSearch:hover {
+  background: #e0e0e0;
+
+  color: #d32f2f;
+}
+
+/* ============================================================
+   RESULT COUNT
+   ============================================================ */
+
+.resultCount {
+  max-width: 1200px;
+
+  margin: 0 auto 20px;
+
+  padding: 8px 4px;
+
+  color: #607d8b;
+
+  font-size: 14px;
+}
+
+.resultCount strong {
+  color: #2e7d32;
+}
+
+/* ============================================================
+   SCHEME GRID
+   ============================================================ */
+
+.schemeGrid {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+/* ============================================================
+   SCHEME CARD
+   ============================================================ */
+
+.schemeCard {
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 360px;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  border: 1px solid #e0e0e0;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.07);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.schemeCard:hover {
+  transform: translateY(-5px);
+
+  border-color: #81c784;
+
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================================
+   SCHEME TITLE
+   ============================================================ */
+
+.schemeTitle {
+  margin-bottom: 12px;
+
+  color: #1b5e20;
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  line-height: 1.35;
+}
+
+/* ============================================================
+   CATEGORY
+   ============================================================ */
+
+.schemeCategory {
+  display: inline-block;
+
+  align-self: flex-start;
+
+  margin-bottom: 15px;
+
+  padding: 7px 12px;
+
+  background: #e8f5e9;
+
+  color: #2e7d32;
+
+  border-radius: 20px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+/* ============================================================
+   DESCRIPTION
+   ============================================================ */
+
+.schemeDescription {
+  margin: 0 0 15px;
+
+  color: #455a64;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+/* ============================================================
+   MINISTRY
+   ============================================================ */
+
+.schemeMinistry {
+  margin: 0 0 10px;
+
+  color: #546e7a;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+.schemeMinistry strong {
+  color: #37474f;
+}
+
+/* ============================================================
+   SOURCE
+   ============================================================ */
+
+.schemeSource {
+  margin: 0 0 18px;
+
+  color: #546e7a;
+
+  font-size: 13px;
+}
+
+.schemeSource strong {
+  color: #37474f;
+}
+
+/* ============================================================
+   OFFICIAL BUTTON
+   ============================================================ */
+
+.applyButton {
+  width: 100%;
+
+  margin-top: auto;
+
+  min-height: 46px;
+
+  padding: 10px 15px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #2e7d32;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.applyButton:hover {
+  background: #1b5e20;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 5px 12px rgba(46, 125, 50, 0.25);
+}
+
+.applyButton:active {
+  transform: scale(0.98);
+}
+
+/* ============================================================
+   EMPTY BOX
+   ============================================================ */
+
+.emptyBox {
+  max-width: 700px;
+
+  margin: 35px auto;
+
+  padding: 40px 25px;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  text-align: center;
+
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.emptyBox h3 {
+  margin: 0 0 12px;
+
+  color: #455a64;
+
+  font-size: 22px;
+}
+
+.emptyBox p {
+  margin: 0 0 20px;
+
+  color: #78909c;
+
+  line-height: 1.6;
+}
+
+/* ============================================================
+   RETRY / SHOW ALL BUTTON
+   ============================================================ */
+
+.retryButton {
+  border: none;
+
+  padding: 11px 20px;
+
+  border-radius: 10px;
+
+  background: #388e3c;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.retryButton:hover {
+  background: #1b5e20;
+
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+
+.aboutGovernment {
+  max-width: 1200px;
+
+  margin: 35px auto 25px;
+
+  padding: 25px;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  border-left: 5px solid #43a047;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.06);
+}
+
+.aboutGovernment h2 {
+  margin: 0 0 15px;
+
+  color: #1b5e20;
+
+  font-size: 22px;
+}
+
+.aboutGovernment p {
+  margin: 8px 0;
+
+  color: #546e7a;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+/* ============================================================
+   BACK BUTTON
+   ============================================================ */
+
+.backButton {
+  display: block;
+
+  margin: 25px auto;
+
+  padding: 12px 22px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #455a64;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.backButton:hover {
+  background: #263238;
+
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.governmentPage footer {
+  max-width: 1200px;
+
+  margin: 30px auto 0;
+
+  padding: 20px;
+
+  border-top: 1px solid #cfd8dc;
+
+  text-align: center;
+
+  color: #78909c;
+
+  font-size: 13px;
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 1000px) {
+
+  .schemeGrid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+  .governmentPage {
+    padding: 15px;
+  }
+
+  .governmentHeader {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    padding: 20px;
+
+    text-align: center;
+  }
+
+  .governmentHeader h1 {
+    font-size: 25px;
+  }
+
+  .governmentHeader p {
+    font-size: 14px;
+  }
+
+  .refreshButton {
+    width: 100%;
+  }
+
+  .backendInfo {
+    font-size: 13px;
+
+    word-break: break-word;
+  }
+
+  .schemeSummary {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .summaryCard {
+    min-height: 115px;
+
+    padding: 18px;
+  }
+
+  .schemeSearch {
+    flex-wrap: wrap;
+  }
+
+  .schemeSearch input {
+    width: 100%;
+
+    flex: 1 1 100%;
+  }
+
+  .searchButton {
+    flex: 1;
+
+    width: 100%;
+  }
+
+  .clearSearch {
+    right: 8px;
+
+    top: 8px;
+  }
+
+  .schemeGrid {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+  }
+
+  .schemeCard {
+    min-height: auto;
+
+    padding: 20px;
+  }
+
+  .schemeTitle {
+    font-size: 18px;
+  }
+
+  .schemeDescription {
+    font-size: 14px;
+  }
+
+  .aboutGovernment {
+    padding: 20px;
+  }
+
+  .aboutGovernment h2 {
+    font-size: 19px;
+  }
+
+  .backButton {
+    width: 100%;
+  }
+
+}
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+  .governmentPage {
+    padding: 10px;
+  }
+
+  .governmentHeader {
+    padding: 16px;
+  }
+
+  .governmentHeader h1 {
+    font-size: 22px;
+  }
+
+  .summaryCard strong {
+    font-size: 22px;
+  }
+
+  .schemeCard {
+    padding: 16px;
+  }
+
+  .schemeTitle {
+    font-size: 17px;
+  }
+
+  .applyButton {
+    min-height: 44px;
+
+    font-size: 13px;
+  }
+
+}
+

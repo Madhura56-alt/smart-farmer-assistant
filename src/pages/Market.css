@@ -1,0 +1,564 @@
+
+/* ============================================================
+   MARKET PAGE
+============================================================ */
+
+.marketPage {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  background: #f5f8f5;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1f2937;
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.marketHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding: 25px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.marketHeader h1 {
+  margin: 0 0 8px 0;
+  font-size: 30px;
+  color: #176b3a;
+}
+
+.marketHeader p {
+  margin: 0;
+  font-size: 15px;
+  color: #6b7280;
+}
+
+
+/* ============================================================
+   REFRESH BUTTON
+============================================================ */
+
+.refreshButton {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: #176b3a;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.refreshButton:hover {
+  transform: translateY(-1px);
+  background: #12572f;
+}
+
+.refreshButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   SEARCH
+============================================================ */
+
+.marketSearch {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 18px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.marketSearch input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+  background: #ffffff;
+}
+
+.marketSearch input:focus {
+  border-color: #176b3a;
+  box-shadow: 0 0 0 3px rgba(23, 107, 58, 0.12);
+}
+
+
+/* ============================================================
+   SEARCH BUTTON
+============================================================ */
+
+.searchButton {
+  padding: 13px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #176b3a;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background: #12572f;
+}
+
+
+/* ============================================================
+   CLEAR SEARCH
+============================================================ */
+
+.clearSearch {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  background: #e5e7eb;
+  color: #374151;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.clearSearch:hover {
+  background: #d1d5db;
+}
+
+
+/* ============================================================
+   MARKET INFO
+============================================================ */
+
+.marketInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.marketInfo span {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 14px;
+  background: white;
+  border-radius: 10px;
+  color: #374151;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ============================================================
+   MARKET GRID
+============================================================ */
+
+/*
+   Important:
+   This grid can handle 500+ records.
+*/
+
+.marketGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+
+/* ============================================================
+   MARKET CARD
+============================================================ */
+
+.marketCard {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.marketCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.11);
+}
+
+
+/* ============================================================
+   CROP TITLE
+============================================================ */
+
+.cropTitle {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #176b3a;
+}
+
+
+/* ============================================================
+   MARKET NAME
+============================================================ */
+
+.marketCard h3 {
+  margin: 0 0 8px 0;
+  font-size: 17px;
+  color: #374151;
+}
+
+
+/* ============================================================
+   LOCATION
+============================================================ */
+
+.location {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   PRICE
+============================================================ */
+
+.priceMain {
+  margin-top: 5px;
+  font-size: 28px;
+  font-weight: 800;
+  color: #15803d;
+}
+
+.unit {
+  margin: 5px 0 16px 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+
+/* ============================================================
+   DATE
+============================================================ */
+
+.dateBox {
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: #f0fdf4;
+  color: #166534;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   LOADING BOX
+============================================================ */
+
+.loadingBox {
+  text-align: center;
+  padding: 50px 20px;
+  margin-bottom: 25px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.loadingBox h3 {
+  margin: 15px 0 8px;
+  color: #374151;
+}
+
+.loadingBox p {
+  margin: 0;
+  color: #6b7280;
+}
+
+
+/* ============================================================
+   LOADER
+============================================================ */
+
+.loader {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto;
+  border: 4px solid #d1d5db;
+  border-top: 4px solid #176b3a;
+  border-radius: 50%;
+  animation: marketSpin 0.9s linear infinite;
+}
+
+@keyframes marketSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ============================================================
+   ERROR BOX
+============================================================ */
+
+.errorBox {
+  margin-bottom: 25px;
+  padding: 30px;
+  text-align: center;
+  background: #fff7f7;
+  border: 1px solid #fecaca;
+  border-radius: 16px;
+}
+
+.errorBox h3 {
+  margin-top: 0;
+  color: #b91c1c;
+}
+
+.errorBox p {
+  color: #7f1d1d;
+}
+
+
+/* ============================================================
+   EMPTY BOX
+============================================================ */
+
+.emptyBox {
+  padding: 40px 20px;
+  margin-bottom: 25px;
+  text-align: center;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.emptyBox h3 {
+  margin-top: 0;
+  color: #374151;
+}
+
+.emptyBox p {
+  color: #6b7280;
+}
+
+
+/* ============================================================
+   RETRY BUTTON
+============================================================ */
+
+.retryButton {
+  margin-top: 10px;
+  padding: 11px 18px;
+  border: none;
+  border-radius: 9px;
+  background: #176b3a;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.retryButton:hover {
+  background: #12572f;
+}
+
+
+/* ============================================================
+   ABOUT MARKET
+============================================================ */
+
+.aboutMarket {
+  margin-top: 35px;
+  padding: 25px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.aboutMarket h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #176b3a;
+}
+
+.aboutMarket p {
+  margin: 10px 0;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+
+/* ============================================================
+   DATA NOTICE
+============================================================ */
+
+.dataNotice {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 12px;
+  background: #fffbea;
+  border: 1px solid #fde68a;
+}
+
+.dataNotice h3 {
+  margin-top: 0;
+  color: #92400e;
+}
+
+.dataNotice p {
+  color: #78350f;
+}
+
+
+/* ============================================================
+   BACK BUTTON
+============================================================ */
+
+.backButton {
+  display: block;
+  margin: 30px auto 20px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  background: #374151;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  background: #1f2937;
+}
+
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+.marketPage footer {
+  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 900px) {
+  .marketPage {
+    padding: 25px 20px;
+  }
+
+  .marketHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .refreshButton {
+    width: 100%;
+  }
+
+  .marketGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 600px) {
+  .marketPage {
+    padding: 15px;
+  }
+
+  .marketHeader {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .marketHeader h1 {
+    font-size: 23px;
+  }
+
+  .marketHeader p {
+    font-size: 13px;
+  }
+
+  .marketSearch {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+  }
+
+  .marketSearch input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .searchButton {
+    width: 100%;
+  }
+
+  .clearSearch {
+    width: 100%;
+  }
+
+  .marketInfo {
+    flex-direction: column;
+  }
+
+  .marketInfo span {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .marketGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .marketCard {
+    padding: 18px;
+  }
+
+  .cropTitle {
+    font-size: 19px;
+  }
+
+  .priceMain {
+    font-size: 25px;
+  }
+
+  .aboutMarket {
+    padding: 18px;
+  }
+}
+

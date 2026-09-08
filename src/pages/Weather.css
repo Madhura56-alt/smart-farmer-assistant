@@ -1,0 +1,521 @@
+
+/* =========================================================
+   KARNATAKA WEATHER PAGE
+   ========================================================= */
+
+.weatherPage {
+  min-height: 100vh;
+  background: #f4f8f4;
+  padding: 28px 40px 50px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #26352a;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.weatherHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.weatherHeader h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1f6b3a;
+}
+
+.weatherHeader p {
+  margin: 6px 0 0;
+  color: #6b776e;
+  font-size: 15px;
+}
+
+.backBtn {
+  border: none;
+  background: #ffffff;
+  color: #1f6b3a;
+  padding: 11px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: 0.2s ease;
+}
+
+.backBtn:hover {
+  background: #1f6b3a;
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   CURRENT WEATHER
+   ========================================================= */
+
+.topCard {
+  background: linear-gradient(135deg, #2f8f52, #176b3b);
+  color: white;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 25px rgba(31, 107, 58, 0.20);
+  position: relative;
+  overflow: hidden;
+}
+
+.topCard::after {
+  content: "🌦️";
+  position: absolute;
+  right: 35px;
+  top: 20px;
+  font-size: 95px;
+  opacity: 0.15;
+}
+
+.topCard h2 {
+  margin: 0 0 5px;
+  font-size: 25px;
+}
+
+.topCard .location {
+  opacity: 0.9;
+  margin-bottom: 15px;
+}
+
+.topCard h1 {
+  margin: 5px 0;
+  font-size: 58px;
+  font-weight: 700;
+}
+
+.topCard h3 {
+  font-size: 28px;
+  margin: 5px 0;
+}
+
+.topCard p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+/* =========================================================
+   CURRENT WEATHER INFO
+   ========================================================= */
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-bottom: 35px;
+}
+
+.infoCard {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 15px;
+  text-align: center;
+  border: 1px solid #e2ebe4;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  transition: 0.2s ease;
+}
+
+.infoCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.10);
+}
+
+.infoCard h2 {
+  margin: 0 0 8px;
+  font-size: 30px;
+}
+
+.infoCard h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #66736a;
+}
+
+.infoCard p {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: #1f6b3a;
+}
+
+/* =========================================================
+   SECTION TITLES
+   ========================================================= */
+
+.title {
+  margin: 35px 0 16px;
+  font-size: 22px;
+  color: #244d31;
+}
+
+/* =========================================================
+   HOURLY FORECAST
+   ========================================================= */
+
+.hourContainer {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(140px, 1fr));
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.hourCard {
+  min-width: 140px;
+  background: white;
+  border: 1px solid #e2ebe4;
+  border-radius: 15px;
+  padding: 18px 12px;
+  text-align: center;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  transition: 0.2s ease;
+}
+
+.hourCard:hover {
+  transform: translateY(-4px);
+  border-color: #74ad84;
+}
+
+.hourCard h4 {
+  margin: 0;
+  color: #555f58;
+  font-size: 14px;
+}
+
+.hourCard h2 {
+  font-size: 32px;
+  margin: 12px 0;
+}
+
+.hourCard h3 {
+  margin: 4px 0;
+  font-size: 21px;
+  color: #1f6b3a;
+}
+
+.hourCard p {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 8px 0;
+}
+
+.hourCard small {
+  display: block;
+  margin: 5px 0;
+  color: #69756d;
+}
+
+/* =========================================================
+   7 DAY FORECAST
+   ========================================================= */
+
+.forecastContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 14px;
+}
+
+.forecastCard {
+  background: white;
+  border: 1px solid #e2ebe4;
+  border-radius: 16px;
+  padding: 18px 12px;
+  text-align: center;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  transition: 0.2s ease;
+}
+
+.forecastCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+}
+
+.forecastCard h3 {
+  margin: 0 0 5px;
+  color: #1f6b3a;
+  font-size: 15px;
+}
+
+.forecastCard .date {
+  font-size: 12px;
+  color: #8a948d;
+  margin-bottom: 10px;
+}
+
+.forecastIcon {
+  font-size: 38px;
+  margin: 10px 0;
+}
+
+.forecastIcon h1 {
+  margin: 0;
+  font-size: 38px;
+}
+
+.forecastCard .weatherDescription {
+  font-size: 13px;
+  color: #66736a;
+  margin-bottom: 10px;
+}
+
+.temperature {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.maxTemp {
+  font-size: 17px;
+  font-weight: 700;
+  color: #d35b36;
+}
+
+.minTemp {
+  font-size: 17px;
+  font-weight: 700;
+  color: #4d82a7;
+}
+
+.forecastCard p {
+  font-size: 12px;
+  margin: 8px 0;
+  color: #5e6961;
+}
+
+/* =========================================================
+   FARMER ADVISORY
+   ========================================================= */
+
+.adviceCard {
+  background: #ffffff;
+  border-left: 5px solid #2f8f52;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.adviceCard p {
+  margin: 12px 0;
+  font-size: 15px;
+  color: #465149;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   WEATHER ALERTS
+   ========================================================= */
+
+.alertCard {
+  background: #fff8e8;
+  border-left: 5px solid #e4a72c;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.alertCard p {
+  margin: 12px 0;
+  color: #65532c;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.refreshBtn {
+  border: none;
+  background: #2f8f52;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: 0.2s ease;
+}
+
+.refreshBtn:hover {
+  background: #216d3c;
+  transform: translateY(-1px);
+}
+
+.refreshBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.weatherLoading {
+  text-align: center;
+  padding: 40px;
+  color: #1f6b3a;
+  font-size: 17px;
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.weatherError {
+  background: #fff0f0;
+  color: #b43b3b;
+  border: 1px solid #f1caca;
+  padding: 18px;
+  border-radius: 12px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.weatherFooter {
+  text-align: center;
+  margin-top: 45px;
+  padding-top: 20px;
+  border-top: 1px solid #dfe7e1;
+  color: #7a847d;
+  font-size: 13px;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .weatherPage {
+    padding: 25px;
+  }
+
+  .infoGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .forecastContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .hourContainer {
+    grid-template-columns: repeat(4, minmax(140px, 1fr));
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .weatherPage {
+    padding: 18px 14px 35px;
+  }
+
+  .weatherHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .weatherHeader h1 {
+    font-size: 25px;
+  }
+
+  .topCard {
+    padding: 23px;
+  }
+
+  .topCard h1 {
+    font-size: 45px;
+  }
+
+  .topCard::after {
+    font-size: 70px;
+    right: 15px;
+  }
+
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .infoCard {
+    padding: 16px 10px;
+  }
+
+  .hourContainer {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .hourCard {
+    flex: 0 0 145px;
+  }
+
+  .forecastContainer {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+  }
+
+  .forecastCard {
+    min-width: 175px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .adviceCard,
+  .alertCard {
+    padding: 16px;
+  }
+
+  .refreshBtn,
+  .backBtn {
+    width: 100%;
+    margin: 6px 0;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+  .infoGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .infoCard h2 {
+    font-size: 25px;
+  }
+
+  .infoCard p {
+    font-size: 16px;
+  }
+
+  .topCard h1 {
+    font-size: 40px;
+  }
+}

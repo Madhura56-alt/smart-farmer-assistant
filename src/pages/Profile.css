@@ -1,0 +1,62 @@
+.profilePage{
+  min-height:100vh;
+  background:#eef7ee;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.profileCard{
+  width:380px;
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  text-align:center;
+}
+
+.avatar{
+  font-size:70px;
+  margin-bottom:15px;
+}
+
+.profileCard input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-size:16px;
+}
+
+.profileCard p{
+  text-align:left;
+  margin:10px 0;
+  font-size:17px;
+}
+
+.saveBtn,
+.editBtn,
+.homeBtn{
+  width:100%;
+  padding:12px;
+  margin-top:12px;
+  border:none;
+  border-radius:10px;
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.saveBtn{
+  background:#2e7d32;
+}
+
+.editBtn{
+  background:#ff9800;
+}
+
+.homeBtn{
+  background:#1565c0;
+}
