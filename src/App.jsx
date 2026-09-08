@@ -1,48 +1,121 @@
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+
+import { auth } from "./firebase";
 
 import Loginpage from "./pages/Loginpage";
 import Registration from "./pages/Registration";
 import Home from "./pages/Home";
 
 function App() {
+  const [page, setPage] = useState("login");
+  const [user, setUser] = useState(null);
+  const [checkingAuth, setCheckingAuth] = useState(true);
 
-    const [page, setPage] = useState("login");
+  // ============================================================
+  // CHECK FIREBASE AUTHENTICATION STATE
+  // ============================================================
 
-    const loginSuccess = () => {
-        setPage("home");
-    };
+  useEffect(() => {
+    
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (currentUser) => {
+        setUser(currentUser);
 
-    const logout = () => {
-        setPage("login");
-    };
+        if (currentUser) {
+          setPage("home");
+        } else {
+          setPage("login");
+        }
 
-    return (
-
-        <div>
-
-            {page === "login" && (
-                <Loginpage
-                    goHome={loginSuccess}
-                    goRegister={() => setPage("register")}
-                />
-            )}
-
-            {page === "register" && (
-                <Registration
-                    goLogin={() => setPage("login")}
-                />
-            )}
-
-            {page === "home" && (
-                <Home
-                    logout={logout}
-                />
-            )}
-
-        </div>
-
+        setCheckingAuth(false);
+      }
     );
 
+    return () => unsubscribe();
+  }, []);
+
+  // ============================================================
+  // LOGIN SUCCESS
+  // ============================================================
+
+  const loginSuccess = () => {
+    setPage("home");
+  };
+
+  // ============================================================
+  // LOGOUT
+  // ============================================================
+
+  const logout = async () => {
+    try {
+      await signOut(auth);
+
+      setUser(null);
+      setPage("login");
+    } catch (error) {
+      console.error("Logout error:", error);
+
+      alert("Unable to logout. Please try again.");
+    }
+  };
+
+  // ============================================================
+  // CHECKING AUTHENTICATION
+  // ============================================================
+
+  if (checkingAuth) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "20px",
+          fontWeight: "600",
+          textAlign: "center",
+        }}
+      >
+        🌾 Loading Smart Farmer Assistant...
+      </div>
+    );
+  }
+
+  // ============================================================
+  // APP
+  // ============================================================
+
+  return (
+    <div>
+
+      {/* LOGIN */}
+      {page === "login" && (
+        <Loginpage
+          goHome={loginSuccess}
+          goRegister={() => setPage("register")}
+        />
+      )}
+
+      {/* REGISTRATION */}
+      {page === "register" && (
+        <Registration
+          goLogin={() => setPage("login")}
+        />
+      )}
+
+      {/* HOME */}
+      {page === "home" && user && (
+        <Home
+          logout={logout}
+        />
+      )}
+
+    </div>
+  );
 }
 
 export default App;
+
